@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.http import HttpRequest
 from .models import Product
 from guardian.admin import GuardedModelAdmin
 
@@ -12,3 +13,16 @@ class ProductAdmin(GuardedModelAdmin):
         
     def get_queryset(self, request):
         return super().get_queryset(request)
+    
+    def has_permission(self, request, obj, action):
+        opts = self.opts
+
+    
+    def has_view_permission(self, request, obj=None):
+        return False
+    
+    def has_change_permission(self, request, obj=None):
+        return False
+    
+    def has_delete_permission(self, request, obj=None):
+        return False
