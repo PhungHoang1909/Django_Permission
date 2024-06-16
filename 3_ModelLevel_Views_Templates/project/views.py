@@ -24,7 +24,10 @@ def project_detail(request, id):
     return render(request, "detail.html", {"detail": project})
 
 @login_required
-@permission_required("project.view_project")
+@permission_required(
+    {("project.view_project"), ("project.can_add_new_project")}
+)
+
 def create_project(request):
 
     if request.method == "POST":
